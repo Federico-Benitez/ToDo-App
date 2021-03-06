@@ -2,13 +2,17 @@
  <q-layout view="lHh Lpr lFf">
   <q-header>
     <q-toolbar class="text-dark shadow-2">
+      <q-space/>
       <div class="q-px-lg q pt-x1 q-mb-md">
-        <div class="text-h3">To Do</div>
-        <div class="text-subtitle1">{{todaysDate}}</div>
+        <div class="texto-cabecera">
+          <div class="text-h3">To Do</div>
+          <div class="text-subtitle1">{{todaysDate}}</div>
+        </div>
       </div>
+      <q-space/>
 
-      <q-img src="../static/fondo.jpg"
-      class="header-image absolute-top" />
+      <!-- <q-img src="../static/fondo.jpg"
+      class="header-image absolute-top" /> -->
     </q-toolbar>
   </q-header>
 
@@ -39,6 +43,15 @@ export default {
 </script>
 
 <style lang="scss">
+  .texto-cabecera{
+    display: block;
+    align-content: center;
+    margin-top: 10px;
+    padding: 10px;
+    .text-h3{
+      font-weight: 300;
+    }
+  }
 
   .header-image{
     height: 100%;
