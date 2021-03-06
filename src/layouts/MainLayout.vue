@@ -1,26 +1,27 @@
 <template>
- <q-layout view="lHh Lpr lFf">
-  <q-header>
-    <q-toolbar class="text-dark shadow-2">
-      <q-space/>
-      <div class="q-px-lg q pt-x1 q-mb-md">
-        <div class="texto-cabecera">
-          <div class="text-h3">To Do</div>
-          <div class="text-subtitle1">{{todaysDate}}</div>
-        </div>
-      </div>
-      <q-space/>
+ <q-layout view="lHr Lpr lfr">
 
-      <!-- <q-img src="../static/fondo.jpg"
-      class="header-image absolute-top" /> -->
-    </q-toolbar>
-  </q-header>
+      <q-header>
+        <q-toolbar class="text-dark bg-blue-2 shadow-2">
+          <q-space/>
+          <div class="q-px-lg q pt-x1 q-mb-md">
+            <div class="texto-cabecera">
+              <div class="text-h3">To Do</div>
+              <div class="text-subtitle1">{{todaysDate}}</div>
+            </div>
+          </div>
+          <q-space/>
 
-    <q-page-container>
-      <keep-alive>
-        <router-view/>
-      </keep-alive>
-    </q-page-container>
+          <!-- <q-img src="../static/fondo.jpg"
+          class="header-image absolute-top" /> -->
+        </q-toolbar>
+      </q-header>
+
+        <q-page-container>
+          <keep-alive>
+            <router-view/>
+          </keep-alive>
+        </q-page-container>
 
  </q-layout>
 </template>
