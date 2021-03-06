@@ -2,7 +2,7 @@
  <q-layout view="lHr Lpr lfr">
 
       <q-header>
-        <q-toolbar class="text-dark bg-blue-2 shadow-2">
+        <q-toolbar class="text-dark bg-blue-grey-6 shadow-2">
           <q-space/>
           <div class="q-px-lg q pt-x1 q-mb-md">
             <div class="texto-cabecera">

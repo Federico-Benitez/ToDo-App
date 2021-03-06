@@ -1,6 +1,6 @@
 <template>
     <q-page class="column bg-blue-1">
-        <div class="row q-pa-sm bg-white">
+        <div class="row q-pa-sm bg-blue-grey-5">
             <q-input
             v-model="newTask"
             @keyup.enter="addTask"
@@ -67,6 +67,7 @@
 export default {
   data() {
     // TODO: Obtener de la API
+
     return {
       newTask: '',
       tasks: [
@@ -87,6 +88,8 @@ export default {
   },
   methods: {
     deleteTask(index) {
+      // Preguntamos si realmente desea eliminar
+      // si es que la tarea no estaba hecha
       if (this.tasks[index].state === false) {
         this.$q.dialog({
           title: 'Alerta',
@@ -98,6 +101,7 @@ export default {
           this.$q.notify('Tarea eliminada');
         });
       } else {
+        // La tarea ya estaba marcada como hecha, solamente se elimina
         this.tasks.splice(index, 1);
         this.$q.notify('Tarea eliminada');
       }
@@ -112,6 +116,9 @@ export default {
         this.newTask = '';
         this.$q.notify('Nueva tarea agregada!');
       }
+    },
+    getInfo() {
+
     },
   },
 };
