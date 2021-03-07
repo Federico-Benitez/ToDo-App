@@ -22,20 +22,23 @@
         bordered>
             <!--tarea-->
         <q-item
+        class="item"
         v-for="(task,index) in tasks"
         :key="task.title"
-        @click="task.state = !task.state"
+        @click="taskDone(index)"
         :class="{'done' :task.state}"
         clickable
         v-ripple>
             <q-item-section avatar>
             <q-checkbox
-            v-model="task.state"
+
+            :value="task.state == true"
             class="no-pointer-events"
-            color="primary" />
+            color="green-6"
+            ref="checkbox"/>
             </q-item-section>
             <q-item-section>
-            <q-item-label>{{task.texto}}</q-item-label>
+            <q-item-label>{{task.contenido}}</q-item-label>
             </q-item-section>
             <!--Boton eliminar-->
             <q-item-section
@@ -64,29 +67,44 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     // TODO: Obtener de la API
-
     return {
       newTask: '',
-      tasks: [
-        {
-          texto: 'Study',
-          state: false,
-        },
-        {
-          texto: 'Comprar Frutas',
-          state: true,
-        },
-        {
-          texto: 'Sacar al perro a pasear',
-          state: false,
-        },
-      ],
+      tasks: [],
     };
   },
+  mounted() {
+    axios.get('https://sv-todo-app.herokuapp.com/')
+      .then((response) => {
+        this.tasks = response.data;
+        console.log(this.tasks);
+      });
+  },
   methods: {
+    taskDone(index) {
+      this.tasks[index].state = !this.tasks[index].state;
+      const { id, contenido } = this.tasks[index];
+      let { state } = this.tasks[index];
+      if (state) state = 1;
+
+      const nota = {
+        id: index,
+        state,
+        contenido,
+      };
+
+      if (nota.state) {
+        this.$q.notify('Tarea hecha!');
+      }
+      axios.put(`https://sv-todo-app.herokuapp.com/${id}`, nota)
+        .then((result) => {
+          console.log(result);
+        });
+    },
     deleteTask(index) {
       // Preguntamos si realmente desea eliminar
       // si es que la tarea no estaba hecha
@@ -110,15 +128,12 @@ export default {
       // Validación de si la tarea tiene algun contenido
       if (this.newTask !== '') {
         this.tasks.push({
-          texto: this.newTask,
+          contenido: this.newTask,
           state: false,
         });
         this.newTask = '';
         this.$q.notify('Nueva tarea agregada!');
       }
-    },
-    getInfo() {
-
     },
   },
 };
