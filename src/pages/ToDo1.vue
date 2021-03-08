@@ -61,24 +61,10 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 import { mapGetters, mapActions } from 'vuex';
 
-const axiosInstance = axios.create({
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
-});
-
 export default {
-  // data() {
-  //   // TODO: Obtener de la API
-  //   return {
-  //     newTask: '',
-  //     tasks: [],
-  //     lastTaskIndex: 0,
-  //   };
-  // },
   computed: {
     ...mapGetters('tasks', ['tasks']),
     ...mapActions('tasks', ['getTasks']),
@@ -87,25 +73,6 @@ export default {
     this.getAllTasks();
   },
   methods: {
-    getAllTasks() {
-      axiosInstance
-        .get('https://sv-todo-app.herokuapp.com/')
-        .then((response) => {
-          this.tasks = response.data;
-          // obtenemos el indice en la bd del ultimo elemento
-          if (this.tasks.slice(-1)[0]) {
-            this.lastTaskIndex = this.tasks.slice(-1)[0].id;
-            console.log(
-              'Hay elemento y el ultimo indice es',
-              this.lastTaskIndex,
-            );
-          } else {
-            this.lastTaskIndex = 0;
-            console.log('No hay elementos');
-          }
-        })
-        .catch((error) => console.log(error));
-    },
   },
 };
 </script>
