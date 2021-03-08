@@ -28,6 +28,7 @@ const actions = {
   // pueden ser async
   // manipular state
   getTasks({ commit }) {
+    console.log('aca entro');
     axiosInstance.get('https://sv-todo-app.herokuapp.com/').then((response) => {
       commit('SET_TASKS', response.data);
     });

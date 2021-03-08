@@ -1,111 +1,28 @@
 <template>
   <q-page class="column bg-blue-1">
     <div class="row q-pa-sm bg-blue-grey-5">
-      <q-input
-        v-model="newTask"
-        @keyup.enter="addTask"
-        class="col justify-center input-task"
-        color="grey-3"
-        bg-color="white"
-        label-color="grey"
-        outlined
-        placeholder="Agregar Tarea"
-      >
-        <template v-slot:append>
-          <q-btn @click="addTask" round dense flat icon="add" />
-        </template>
-      </q-input>
+      <input/>
     </div>
     <q-list class="bg-white" separator bordered>
       <!--tarea-->
-      <q-item
-        class="item"
-        v-for="(task, index) in tasks"
-        :key="task.title"
-        @click="taskDone(index)"
-        :class="{ done: task.state }"
-        clickable
-        v-ripple
-      >
-        <q-item-section avatar>
-          <q-checkbox
-            :value="task.state == true"
-            class="no-pointer-events"
-            color="green-6"
-            ref="checkbox"
-          />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>{{ task.contenido }}</q-item-label>
-        </q-item-section>
-        <!--Boton eliminar-->
-        <q-item-section side>
-          <q-btn
-            push
-            color="white"
-            text-color="red"
-            round
-            icon="delete"
-            dense
-            @click.stop="deleteTask(index)"
-          />
-        </q-item-section>
-      </q-item>
+      <tasks/>
     </q-list>
-    <div v-if="!tasks.length" class="no-tasks absolute-center">
-      <div class="text-h5 text-primary text-center">
-        No existen tareas pendientes
-      </div>
-    </div>
+    <noTaskMessage/>
   </q-page>
 </template>
 
 <script>
-import axios from 'axios';
 import { mapGetters, mapActions } from 'vuex';
 
-const axiosInstance = axios.create({
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
-});
-
 export default {
-  // data() {
-  //   // TODO: Obtener de la API
-  //   return {
-  //     newTask: '',
-  //     tasks: [],
-  //     lastTaskIndex: 0,
-  //   };
-  // },
   computed: {
     ...mapGetters('tasks', ['tasks']),
-    ...mapActions('tasks', ['getTasks']),
+    ...mapActions('tasks', ['getTasks', 'taskDone']),
   },
   mounted() {
-    this.getAllTasks();
+    this.$store.dispatch('getTasks');
   },
   methods: {
-    getAllTasks() {
-      axiosInstance
-        .get('https://sv-todo-app.herokuapp.com/')
-        .then((response) => {
-          this.tasks = response.data;
-          // obtenemos el indice en la bd del ultimo elemento
-          if (this.tasks.slice(-1)[0]) {
-            this.lastTaskIndex = this.tasks.slice(-1)[0].id;
-            console.log(
-              'Hay elemento y el ultimo indice es',
-              this.lastTaskIndex,
-            );
-          } else {
-            this.lastTaskIndex = 0;
-            console.log('No hay elementos');
-          }
-        })
-        .catch((error) => console.log(error));
-    },
   },
 };
 </script>
