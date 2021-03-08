@@ -1,9 +1,9 @@
 <template>
-<h1>hola</h1>
+  <h1>hola</h1>
 </template>
 
 <script>
 export default {
-
+  name: 'saludo',
 };
 </script>

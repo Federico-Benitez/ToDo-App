@@ -1,7 +1,16 @@
 <template>
   <q-page class="column bg-blue-1">
     <div class="row q-pa-sm bg-blue-grey-5">
-      <input />
+
+      <!-- <inputTask /> -->
+      <button @click="pruebas">
+        obtener tareas
+      </button>
+      <ul v-for="task of tasks" :key="task.title">
+        <li>
+          {{task.contenido}}
+        </li>
+      </ul>
     </div>
     <q-list class="bg-white" separator bordered>
       <!--tarea-->
@@ -12,20 +21,25 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import tasks from 'components/Tasks'
-import input from 'components/Input'
-import noTaskMessage from 'components/NoTaskMessage'
+import { mapActions, mapState } from 'vuex';
+// import tasks from 'components/Tasks';
+// import inputTask from 'src/components/Input.vue';
+// import noTaskMessage from 'components/NoTaskMessage';
 
 export default {
+  components: {
+    // tasks,
+    // noTaskMessage,
+    // inputTask,
+  },
   computed: {
-    ...mapGetters('tasks', ['tasks']),
-    ...mapActions('tasks', ['getTasks', 'taskDone']),
+    ...mapState(['tasks']),
   },
   mounted() {
-    this.$store.dispatch('getTasks');
+
   },
   methods: {
+    ...mapActions(['pruebas']),
   },
 };
 </script>
