@@ -13,6 +13,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import tasks from 'components/Tasks'
+import input from 'components/Input'
+import noTaskMessage from 'components/NoTaskMessage'
 
 export default {
   computed: {
