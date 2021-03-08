@@ -1,13 +1,13 @@
 <template>
   <q-page class="column bg-blue-1">
     <div class="row q-pa-sm bg-blue-grey-5">
-      <input/>
+      <input />
     </div>
     <q-list class="bg-white" separator bordered>
       <!--tarea-->
-      <tasks/>
+      <tasks />
     </q-list>
-    <noTaskMessage/>
+    <noTaskMessage />
   </q-page>
 </template>
 
