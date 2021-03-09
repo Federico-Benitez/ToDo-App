@@ -1,6 +1,7 @@
 <template>
 
-  <q-item >
+  <q-item>
+
     <q-item-section avatar>
       <q-checkbox
         :value="state == true"
@@ -10,7 +11,10 @@
       />
     </q-item-section>
 
-      <q-item-section>
+      <q-item-section clikeable
+      @click="updateTask({ id: index, updates: {
+      state: !state
+    }})">
         <q-item-label >{{ contenido }}</q-item-label>
       </q-item-section>
 
@@ -21,21 +25,28 @@
         push color="white"
         text-color="red"
         dense
-        round icon="delete"/>
+        round icon="delete"
+        @click="deleteTask"/>
     </q-item-section>
   </q-item>
 
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
   name: 'task',
   props: {
     contenido: String,
     state: Boolean,
+    index: Number,
+    id: Number,
   },
   computed: {
+  },
+  methods: {
+    ...mapActions('tasks', ['updateTask', 'deleteTask']),
   },
 
 };

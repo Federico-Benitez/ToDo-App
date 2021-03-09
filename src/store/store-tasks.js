@@ -22,7 +22,7 @@ const state = {
     },
     {
       id: 3,
-      state: false,
+      state: true,
       contenido: 'hola de nuevo mundo',
     }
 ],
@@ -33,6 +33,15 @@ const mutations = {
   // no async
   SET_TASKS(state, tasksAction) {
     state.tasks = tasksAction;
+  },
+
+  UPDATE_TASK(state, payload){
+    // console.log('from mutation payload',payload.id)
+    const id = payload.id;
+    
+    // state.tasks[id].state = playload.updates.state;
+    // console.log("nuevo estado", payload.updates.state);
+    state.tasks[id].state = payload.updates.state;
   },
 
   prueba(){
@@ -47,12 +56,19 @@ const mutations = {
 const actions = {
   // pueden ser async
   // manipular state
-  addTask(){
-    console.log('hola mundo desde actions')
+  createTask({}) {
+    console.log('hola mundo')
   },
-  prueba({commit}){
-    commit('pueba')
-  },   
+  updateTask({ commit }, payload){
+    console.log('update task');
+    //request 
+
+    console.log(payload)
+    commit('UPDATE_TASK', payload)
+  },
+  deleteTask({commit}, payload) {
+    console.log('delete task')
+  }  
 };
 
 const getters = {

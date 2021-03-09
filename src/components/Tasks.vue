@@ -3,13 +3,18 @@
     <q-list>
         <q-item
         class="item"
-        v-for="(task) in tasks.tasks"
+        v-for="(task,index) in tasks.tasks"
         :key="task.id"
         :class="{'done' :task.state}"
-        clickable
+
         v-ripple
         >
-          <taskItem class="task-item" v-bind:contenido="task.contenido" v-bind:state="task.state" />
+          <taskItem class="task-item"
+          v-bind:id="task.id"
+          v-bind:contenido="task.contenido"
+          v-bind:state="task.state"
+          v-bind:index="index"
+          />
       </q-item>
     </q-list>
     <div
@@ -33,6 +38,8 @@ export default {
   },
   computed: {
     ...mapState(['tasks']),
+  },
+  methods: {
   },
 };
 

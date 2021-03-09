@@ -1,7 +1,7 @@
 <template>
     <div class="row q-pa-sm bg-blue-grey-4">
             <q-input
-            @keyup.enter="addTask"
+            @keyup.enter="createTask"
             class="col justify-center input-task"
             color="grey-5"
             bg-color="white"
@@ -18,15 +18,17 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
+  computed: {
+    ...mapState(['tasks']),
+  },
   methods: {
-    ...mapActions(['addTasks']),
+    ...mapActions('tasks', ['createTask']),
     // addTasks() {
     //   console.log('agregado');
     // },
-
   },
 
 };
