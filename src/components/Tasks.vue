@@ -1,11 +1,12 @@
 <template>
   <div>
-    <q-list>
+    <q-list separator bordered>
         <q-item
         class="item"
         v-for="(task,index) in tasks.tasks"
         :key="task.id"
         :class="{'done' :task.state}"
+        clickable
 
         v-ripple
         >

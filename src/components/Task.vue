@@ -14,7 +14,7 @@
       <q-item-section clikeable
       @click="checkUpdate({ index: index, id: id, updates: {
       state: !state , contenido: contenido
-    }})">
+    }})" >
         <q-item-label >{{ contenido }}</q-item-label>
       </q-item-section>
 
@@ -64,7 +64,6 @@ export default {
         // tarea hecha
         this.$q.notify('Tarea hecha!');
       }
-      console.log(notaEditada);
       this.updateTask(notaEditada);
     },
   },
