@@ -1,6 +1,7 @@
 # To Do App 📋
 
 ![alt text](./img/pic1.png)
+
 Esta aplicación de gestión de tareas está desarrollada con Vue, utilizando Vuex y Vue Router. 
 
 Para su interfaz gráfica se utilizó el framework Quasar y se sirve de una API Rest para obtener los datos de las tareas a realizar.
@@ -8,7 +9,7 @@ Para su interfaz gráfica se utilizó el framework Quasar y se sirve de una API 
 La app se encuentra hosteada en Vercel.
 
 
-##Urls
+## Urls
 [App](https://todoapp-di8ecnuof-federico-benitez.vercel.app/#/)
 [Repositorio de la API](https://github.com/Federico-Benitez/Todo-App-server)
 
