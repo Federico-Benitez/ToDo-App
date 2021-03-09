@@ -159,10 +159,15 @@ export default {
           state: 0,
         };
         axiosInstance.post('https://sv-todo-app.herokuapp.com/', nota)
-          .then((result) => console.log(result))
+          .then((result) => {
+            nota.id = result.data;
+            console.log(result.data);
+          })
+
           .catch((error) => console.log(error));
 
         this.tasks.push({
+          id: nota.id,
           contenido: nota.contenido,
           state: false,
         });
