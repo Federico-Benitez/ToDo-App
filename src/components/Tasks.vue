@@ -1,19 +1,42 @@
 <template>
-  <q-item
+  <div>
+    <q-list>
+        <q-item
         class="item"
-        v-for="(task, index) in tasks"
-        :key="task.title"
-        @click="taskDone(index)"
-        :class="{ done: task.state }"
+        v-for="(task) in tasks.tasks"
+        :key="task.id"
+        :class="{'done' :task.state}"
         clickable
         v-ripple
-      >
-      <task/>
-</q-item>
+        >
+          <taskItem class="task-item" v-bind:contenido="task.contenido" v-bind:state="task.state" />
+      </q-item>
+    </q-list>
+    <div
+      v-if="!tasks.tasks.length"
+      class="no-tasks absolute-center">
+      <div class="text-h5 text-primary text-center">
+          No existen tareas pendientes
+      </div>
+    </div>
+
+  </div >
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex';
+import taskItem from './Task';
 
+export default {
+  components: {
+    taskItem,
+  },
+  computed: {
+    ...mapState(['tasks']),
+  },
 };
+
 </script>
+
+<style lang="sass">
+</style>

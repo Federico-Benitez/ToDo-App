@@ -9,10 +9,23 @@ const axiosInstance = axios.create({
 const state = {
   newTask: '',
   lastTaskIndex: 0,
-  tasks: [{
-    id: 1,
-    contenido: 'hola mundo',
-  }],
+  tasks: [
+    {
+      id: 1,
+      state: false,
+      contenido: 'hola mundo',
+    },
+    {
+      id: 2,
+      state: true,      
+      contenido: 'chau mundo',
+    },
+    {
+      id: 3,
+      state: false,
+      contenido: 'hola de nuevo mundo',
+    }
+],
 };
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
 const mutations = {
@@ -34,6 +47,9 @@ const mutations = {
 const actions = {
   // pueden ser async
   // manipular state
+  addTask(){
+    console.log('hola mundo desde actions')
+  },
   prueba({commit}){
     commit('pueba')
   },   

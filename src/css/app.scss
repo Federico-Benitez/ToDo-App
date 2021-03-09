@@ -1,1 +1,31 @@
 // app global css in SCSS form
+.done{
+    .q-item__label{
+        text-decoration: line-through;
+        color: #bbb
+    }
+}
+.input-task{
+    height: 100px;
+}
+.no-tasks{
+    opacity: 0.5;
+}
+.task-item{
+    display: contents;
+}
+.task-delete{
+    display: flex;
+    margin-left: 870px;
+}
+
+.task-contenido{
+    display: flex;
+    margin-right: auto;
+}
+.task-checkbox{
+    display: flex;
+    margin-right:  0px;
+    margin-left: auto;
+}
+
