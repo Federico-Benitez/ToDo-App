@@ -43,7 +43,6 @@ export default {
   methods: {
     ...mapActions('tasks', ['updateTask', 'deleteTask']),
     checkDelete(nota) {
-      console.log('hola aca entro', nota);
       if (nota.state === 0) {
         this.$q.dialog({
           title: 'Alerta',

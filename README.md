@@ -11,6 +11,7 @@ La app se encuentra hosteada en Vercel.
 
 ## Urls
 [App](https://todoapp-di8ecnuof-federico-benitez.vercel.app/#/)
+
 [Repositorio de la API](https://github.com/Federico-Benitez/Todo-App-server)
 
 ## Pasos para probar en Local
@@ -36,9 +37,16 @@ npm install
 ```
 
 ### Inicializamos en modo desarollo
+
+Al ejecutar el siguiente comando, la aplicación va a comenzar a hacer una build para desarrollo.
 ```bash
 quasar dev
 ```
+![alt text](./img/pic2.png)
+
+Al finalizar la compilación, podemos acceder a la app desde el navegador a la siguiente url:
+
+[localhost:8080](https://localhost:8080/)
 
 ### Build para produción
 En caso de querer crear una build para producción, ejecutamos el siguiente comando. 
