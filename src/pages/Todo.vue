@@ -19,9 +19,10 @@ export default {
   },
   computed: {
     ...mapState(['tasks']),
+    ...mapActions('tasks', ['getAllTasks']),
   },
   mounted() {
-
+    this.getAllTasks();
   },
   methods: {
     ...mapActions(['pruebas']),

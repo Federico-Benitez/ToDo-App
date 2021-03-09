@@ -43,6 +43,7 @@ export default {
     saveTask(contenido) {
       this.newTask.contenido = '';
       this.createTask(contenido);
+      this.$q.notify('Nueva tarea agregada!');
     },
   },
 

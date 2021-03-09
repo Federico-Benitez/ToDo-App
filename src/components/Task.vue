@@ -13,7 +13,7 @@
 
       <q-item-section clikeable
       @click="updateTask({ index: index, id: id, updates: {
-      state: !state
+      state: !state , contenido: contenido
     }})">
         <q-item-label >{{ contenido }}</q-item-label>
       </q-item-section>
@@ -26,7 +26,7 @@
         text-color="red"
         dense
         round icon="delete"
-        @click="deleteTask({index: index , id: id })"/>
+        @click="comprobarEliminar({index: index , id: id , state:state })"/>
     </q-item-section>
   </q-item>
 
@@ -37,16 +37,28 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'task',
-  props: {
-    contenido: String,
-    state: Boolean,
-    index: Number,
-    id: Number,
-  },
+  props: ['state', 'contenido', 'index', 'id'],
   computed: {
   },
   methods: {
     ...mapActions('tasks', ['updateTask', 'deleteTask']),
+    comprobarEliminar(nota) {
+      console.log('hola aca entro', nota);
+      if (nota.state === 0) {
+        this.$q.dialog({
+          title: 'Alerta',
+          message: 'Estas seguro que deseas eliminar la tarea?',
+          cancel: true,
+          persistent: true,
+        }).onOk(() => {
+          this.$q.notify('Tarea eliminada');
+          this.deleteTask(nota);
+        });
+      }
+      // la tarea ya estaba marcada como hecha
+      this.deleteTask(nota);
+      this.$q.notify('Tarea eliminada');
+    },
   },
 
 };
