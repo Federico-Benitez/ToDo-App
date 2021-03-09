@@ -25,7 +25,6 @@ export default {
     this.getAllTasks();
   },
   methods: {
-    ...mapActions(['pruebas']),
   },
 };
 </script>
