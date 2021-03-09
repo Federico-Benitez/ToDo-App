@@ -127,6 +127,7 @@ export default {
     deleteTask(index) {
       // Preguntamos si realmente desea eliminar
       // si es que la tarea no estaba hecha
+      console.log(this.tasks[index].id);
       if (this.tasks[index].state === false) {
         this.$q.dialog({
           title: 'Alerta',
@@ -146,7 +147,7 @@ export default {
       }
     },
     deleteTaskFromDB(id) {
-      axiosInstance.delete(`https://sv-todo-app.herokuapp.com/${id}`);
+      axiosInstance.delete(`https://sv-todo-app.herokuapp.com/${id}`).then((response) => console.log(response));
     },
     addTask() {
       // Validación de si la tarea tiene algun contenido
@@ -161,16 +162,14 @@ export default {
         axiosInstance.post('https://sv-todo-app.herokuapp.com/', nota)
           .then((result) => {
             nota.id = result.data;
-            console.log(result.data);
+            this.tasks.push({
+              id: nota.id,
+              contenido: nota.contenido,
+              state: false,
+            });
           })
-
           .catch((error) => console.log(error));
 
-        this.tasks.push({
-          id: nota.id,
-          contenido: nota.contenido,
-          state: false,
-        });
         this.newTask = '';
         this.$q.notify('Nueva tarea agregada!');
       }
