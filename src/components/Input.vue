@@ -1,7 +1,8 @@
 <template>
     <div class="row q-pa-sm bg-blue-grey-4">
             <q-input
-            @keyup.enter="createTask"
+            v-model="newTask.contenido"
+            @keyup.enter="createNewTask"
             class="col justify-center input-task"
             color="grey-5"
             bg-color="white"
@@ -18,17 +19,31 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      newTask: {
+        contenido: '',
+        state: false,
+        id: 0,
+      },
+    };
+  },
   computed: {
-    ...mapState(['tasks']),
   },
   methods: {
     ...mapActions('tasks', ['createTask']),
-    // addTasks() {
-    //   console.log('agregado');
-    // },
+    createNewTask() {
+      if (this.newTask.contenido !== '') {
+        this.saveTask(this.newTask.contenido);
+      }
+    },
+    saveTask(contenido) {
+      this.newTask.contenido = '';
+      this.createTask(contenido);
+    },
   },
 
 };

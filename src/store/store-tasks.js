@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 /* eslint-disable */ 
 const axiosInstance = axios.create({
   headers: {
@@ -6,9 +7,7 @@ const axiosInstance = axios.create({
   },
 });
 
-const state = {
-  newTask: '',
-  lastTaskIndex: 0,
+const state = { 
   tasks: [
     {
       id: 19,
@@ -31,8 +30,14 @@ const state = {
 const mutations = {
   // metodos para manipular estado
   // no async
+  
   SET_TASKS(state, tasksAction) {
     state.tasks = tasksAction;
+  },
+
+  CREATE_TASK(state, payload){
+    console.log('from mutation new task ',payload);
+    state.tasks.push(payload);    
   },
 
   UPDATE_TASK(state, payload){
@@ -51,9 +56,17 @@ const mutations = {
 
 const actions = {
   // pueden ser async
-  // manipular state
-  createTask({}) {
-    console.log('hola mundo')
+  // manipular state  
+  createTask({commit}, task) {
+    console.log('creando nota en la bd')
+    console.log('obteniendo id')
+    const payload={
+      id:16,
+      contenido: task,
+      state: false
+    }   
+    console.log(payload);
+    commit('CREATE_TASK', payload)
   },
   updateTask({ commit }, payload){
     console.log('update task');
@@ -71,7 +84,7 @@ const actions = {
 };
 
 const getters = {
-  tasks: state => state.tasks
+  tasks: state => state.tasks,
 };
 
 export default {
