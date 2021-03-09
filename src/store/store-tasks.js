@@ -16,7 +16,7 @@ const state = {
       contenido: 'hola mundo',
     },
     {
-      id: 2,
+      id: 85,
       state: true,      
       contenido: 'chau mundo',
     },
@@ -48,8 +48,9 @@ const mutations = {
     console.log('hola mundo');
   },
 
-  DELETE_TASK(state, index){
-    state.tasks.splice(index,1)
+  DELETE_TASK(state, payload){
+    console.log(payload)
+    state.tasks.splice(payload.index,1)
   }
 };
 
@@ -67,7 +68,9 @@ const actions = {
     commit('UPDATE_TASK', payload)
   },
   deleteTask({commit}, payload) {
-    console.log('delete task')
+    console.log('delete task');
+    commit('DELETE_TASK',payload)
+
   }  
 };
 

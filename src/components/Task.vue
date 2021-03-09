@@ -26,7 +26,7 @@
         text-color="red"
         dense
         round icon="delete"
-        @click="deleteTask"/>
+        @click="deleteTask({index: index , id: id })"/>
     </q-item-section>
   </q-item>
 
