@@ -12,7 +12,7 @@
     </q-item-section>
 
       <q-item-section clikeable
-      @click="updateTask({ index: index, id: id, updates: {
+      @click="checkUpdate({ index: index, id: id, updates: {
       state: !state , contenido: contenido
     }})">
         <q-item-label >{{ contenido }}</q-item-label>
@@ -26,7 +26,7 @@
         text-color="red"
         dense
         round icon="delete"
-        @click="comprobarEliminar({index: index , id: id , state:state })"/>
+        @click="checkDelete({index: index , id: id , state:state })"/>
     </q-item-section>
   </q-item>
 
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     ...mapActions('tasks', ['updateTask', 'deleteTask']),
-    comprobarEliminar(nota) {
+    checkDelete(nota) {
       console.log('hola aca entro', nota);
       if (nota.state === 0) {
         this.$q.dialog({
@@ -58,6 +58,14 @@ export default {
       // la tarea ya estaba marcada como hecha
       this.deleteTask(nota);
       this.$q.notify('Tarea eliminada');
+    },
+    checkUpdate(notaEditada) {
+      if (notaEditada.updates.state) {
+        // tarea hecha
+        this.$q.notify('Tarea hecha!');
+      }
+      console.log(notaEditada);
+      this.updateTask(notaEditada);
     },
   },
 
