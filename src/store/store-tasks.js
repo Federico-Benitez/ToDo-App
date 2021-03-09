@@ -11,7 +11,7 @@ const state = {
   lastTaskIndex: 0,
   tasks: [
     {
-      id: 1,
+      id: 19,
       state: false,
       contenido: 'hola mundo',
     },
@@ -21,7 +21,7 @@ const state = {
       contenido: 'chau mundo',
     },
     {
-      id: 3,
+      id: 32,
       state: true,
       contenido: 'hola de nuevo mundo',
     }
@@ -37,19 +37,14 @@ const mutations = {
 
   UPDATE_TASK(state, payload){
     // console.log('from mutation payload',payload.id)
-    const id = payload.id;
+    const index = payload.index;
     
     // state.tasks[id].state = playload.updates.state;
     // console.log("nuevo estado", payload.updates.state);
-    state.tasks[id].state = payload.updates.state;
-  },
+    state.tasks[index].state = payload.updates.state;
+  }, 
 
-  prueba(){
-    console.log('hola mundo');
-  },
-
-  DELETE_TASK(state, payload){
-    console.log(payload)
+  DELETE_TASK(state, payload){    
     state.tasks.splice(payload.index,1)
   }
 };
@@ -69,6 +64,7 @@ const actions = {
   },
   deleteTask({commit}, payload) {
     console.log('delete task');
+    console.log(payload)
     commit('DELETE_TASK',payload)
 
   }  

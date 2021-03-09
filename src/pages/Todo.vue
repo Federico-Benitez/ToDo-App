@@ -4,7 +4,6 @@
     <q-list class="bg-white" separator bordered>
       <tasks />
     </q-list>
-    <noTaskMessage />
   </q-page>
 </template>
 

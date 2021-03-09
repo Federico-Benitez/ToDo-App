@@ -12,7 +12,7 @@
     </q-item-section>
 
       <q-item-section clikeable
-      @click="updateTask({ id: index, updates: {
+      @click="updateTask({ index: index, id: id, updates: {
       state: !state
     }})">
         <q-item-label >{{ contenido }}</q-item-label>
