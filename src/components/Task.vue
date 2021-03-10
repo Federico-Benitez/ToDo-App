@@ -43,7 +43,7 @@ export default {
   methods: {
     ...mapActions('tasks', ['updateTask', 'deleteTask']),
     checkDelete(nota) {
-      if (nota.state === 0) {
+      if (nota.state === false || nota.state === 0) {
         this.$q.dialog({
           title: 'Alerta',
           message: 'Estas seguro que deseas eliminar la tarea?',
@@ -53,10 +53,11 @@ export default {
           this.$q.notify('Tarea eliminada');
           this.deleteTask(nota);
         });
+      } else {
+        // la tarea ya estaba marcada como hecha
+        this.deleteTask(nota);
+        this.$q.notify('Tarea eliminada');
       }
-      // la tarea ya estaba marcada como hecha
-      this.deleteTask(nota);
-      this.$q.notify('Tarea eliminada');
     },
     checkUpdate(notaEditada) {
       if (notaEditada.updates.state) {
