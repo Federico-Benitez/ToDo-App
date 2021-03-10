@@ -10,7 +10,7 @@ La app se encuentra hosteada en Vercel.
 
 
 ## Urls
-[App](https://todoapp-di8ecnuof-federico-benitez.vercel.app/#/)
+[App](https://todoapp-20j619fyj-federico-benitez.vercel.app/#/)
 
 [Repositorio de la API](https://github.com/Federico-Benitez/Todo-App-server)
 
